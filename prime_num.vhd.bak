@@ -1,0 +1,23 @@
+library IEEE; 
+use IEEE.std_logic_1164.all;
+entity prime_num is port ( N: in STD_LOGIC_VECTOR (15 downto 0); F: out STD_LOGIC ); end prime9;
+architecture prime9_arch of prime_num is
+begin
+ process(N)
+ variable NI: integer; variable prime: boolean; 
+ begin 
+ NI := CONV_INTEGER(N); prime := true; 
+ if NI=1 or NI=2 then null; -- take case of boundary cases
+ else 
+ for i in 2 to 253 loop 
+ if NI mod i = 0 then
+ prime := false; 
+ exit; 
+ end if; 
+ end loop; 
+ end if; 
+ if prime then F <= '1'; 
+ else F <= '0'; 
+ end if; 
+ end process;
+ end prime9_arch;
